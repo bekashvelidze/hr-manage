@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+
+{% block title %}ინვენტარის დამატება{% endblock %}
+
+
+{% block content %}
+<!--<div class="center">-->
+<!--    <div class="inner">-->
+<!--<div class="container">-->
+<!--    <div class="row justify-content">-->
+<!--        <div class="col col-lg">-->
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6">
+                <h3 style="text-align: center;">ინვენტარის დამატება</h3>
+                    <form enctype="multipart/form-data" method="post" action="/create">
+                        {% csrf_token %}
+                        <div class="form-control" style="text-align: center;">
+                            <div class="form-group">
+
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">საინვ. ნომერი</span>
+                                        {{ form.item_number }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">ტიპი</span>
+                                        {{ form.type }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">მფლობელი</span>
+                                        {{ form.owner }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">კომპანია</span>
+                                        {{ form.company }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">აღწერა</span>
+                                        {{ form.description }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">ფოტო</span>
+                                        {{ form.photo_url }}
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text">ლოკაცია</span>
+                                        {{ form.location }}
+                                    </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-success" name="newItem">დამატება</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

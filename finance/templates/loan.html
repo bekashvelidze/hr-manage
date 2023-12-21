@@ -1,0 +1,130 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ loan.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content" style="padding: 1.5em">
+        <div class="col col-lg-4">
+            <h4 style="color: red;">დასახელება - {{ loan.name }}</h4>
+            <table class="table table-light table-bordered">
+                <tr>
+                    <th>N</th>
+                    <td><h4>{{ loan.id }}</h4></td>
+                </tr>
+                <tr>
+                    <th>ძირი თანხა</th>
+                    <td><h4>{{ loan.amount }} ლარი</h4></td>
+                </tr>
+                <tr>
+                    <th>საპროცენტო განაკვეთი</th>
+                    <td><h4>{{ loan.percent }} %</h4></td>
+                </tr>
+                <tr>
+                    <th>ვადა (თვეები)</th>
+                    <td><h4>{{ loan.months }} თვე</h4></td>
+                </tr>
+                <tr>
+                    <th>პროცენტი სულ</th>
+                    <td><h4>{{ loan.percent_to_pay }} ლარი</h4></td>
+                </tr>
+                <tr>
+                    <th>ყოველთვიური სახდელი</th>
+                    <td><h4>{{ loan.monthly_payment }} ლარი</h4></td>
+                </tr>
+                <tr>
+                    <th>სიცოცხლის დაზღვევა</th>
+                    <td><h4>{{ loan.life_insurance }} ლარი</h4></td>
+                </tr>
+                <tr>
+                    <th>საკრედიტო შენატანების დაზღვევა</th>
+                    <td><h4>{{ loan.payments_insurance }} ლარი</h4></td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="col col-lg-8 desktop-only">
+        <h4 style="color: red;">გადახდების ისტორია</h4>
+        <table class="table table-light table-striped table-bordered" xmlns="http://www.w3.org/1999/html">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>N</th>
+                    <th>სულ</th>
+                    <th>ძირი</th>
+                    <th>პროცენტი</th>
+                    <th>სიცოცხლის დაზღვევა</th>
+                    <th>შენატანების დაზღვევა</th>
+                    <th>თარიღი</th>
+                </tr>
+            </thead>
+
+        {% for payment in payment_history %}
+            <tr>
+                <td class="table-item">{{ payment.id }}</td>
+                <td class="table-item">{{ payment.paid_amount }} ლარი</td>
+                <td class="table-item">{{ payment.initial_paid }} ლარი</td>
+                <td class="table-item">{{ payment.percent_paid }} ლარი</td>
+                <td class="table-item">{{ payment.life_insurance }} ლარი</td>
+                <td class="table-item">{{ payment.payments_insurance }} ლარი</td>
+                <td class="table-item">{{ payment.paid_date|date:'d.m.Y' }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+
+
+        </div>
+        </div>
+        <div class="col col-lg-8 mobile-only justify-content">
+         <!--Mobile View-->
+            <table class="table table-light table-striped table-bordered " xmlns="http://www.w3.org/1999/html">
+                {% if payment_history.count == 0 %}
+                    <h4 class="mobile-only" style="color: red;">გადახდების ისტორია</h4>
+                    <h4>გადახდა ჯერ არ დაფიქსირებულა</h4>
+                {% else %}
+                    <h4 class="mobile-only" style="color: red;">გადახდების ისტორია</h4>
+                    {% for payment in payment_history %}
+                    <tr>
+                        <th>N</th>
+                        <td class="table-item"><h4>{{ payment.id }}</h4></a>
+                        </h4></td>
+                    </tr>
+                    <tr>
+                        <th>სულ</th>
+                        <td class="table-item"><h4>{{ payment.paid_amount }}</h4></td>
+                    <tr>
+                    <tr>
+                        <th>ძირი</th>
+                        <td class="table-item"><h4>{{ payment.initial_paid }}</h4></td>
+                    <tr>
+                    <tr>
+                        <th>პროცენტი</th>
+                        <td class="table-item"><h4>{{ payment.percent_paid }}</h4></td>
+                    <tr>
+                    <tr>
+                        <th>სიცოცხლის დაზღვევა</th>
+                        <td class="table-item"><h4>{{ payment.life_insurance }}</h4></td>
+                    <tr>
+                    <tr>
+                        <th>შენატენების დაზღვევა</th>
+                        <td class="table-item"><h4>{{ payment.payments_insurance }}</h4></td>
+                    <tr>
+                    <tr>
+                        <th>თარიღი</th>
+                        <td class="table-item"><h4>{{ payment.paid_date|date:'d.m.Y' }}</h4></td>
+                    <tr>
+
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+</div>
+<div class="container">
+
+</div>
+<div class="col col-md-2">
+    <button class="btn btn-lg btn-warning" onclick="javascript:window.history.back();">უკან დაბრუნება</button>
+</div>
+{% endblock %}

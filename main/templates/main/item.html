@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ item.owner }}{% endblock %}
+
+{% block content %}
+<h1>მფლობელი - {{ item.owner }}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col col-lg">
+            <table class="table table-light">
+                <tr>
+                    <th>ნომერი</th>
+                    <td style="color:red;"><h4>{{ item.item_number }}</h4></td>
+                </tr>
+                <tr>
+                    <th>ტიპი</th>
+                    <td><h4>{{ item.type }}</h4></td>
+                </tr>
+                <tr>
+                    <th>კომპანია</th>
+                    <td><h4>{{ item.company }}</h4></td>
+                </tr>
+                <tr>
+                    <th>აღწერა</th>
+                    <td><h4>{{ item.description }}</h4></td>
+                </tr>
+                <tr>
+                    <th>ლოკაცია</th>
+                    <td><h4>{{ item.location }}</h4></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><h6><a href="/media/{{ item.photo_url }}"><img src="/media/{{ item.photo_url }}" width="100%"></a></h6></div>
+        </div>
+    </div>
+</div>
+<div class="col col-md-2">
+<button class="btn btn-lg btn-warning" onclick="javascript:window.history.back();">უკან დაბრუნება</button>
+</div>
+{% endblock %}

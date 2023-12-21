@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+{% load crispy_forms_tags %}
+ავტორიზაცია
+{% endblock %}
+
+{% block content %}
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-4">
+                <h3 style="text-align: center;">ავტორიზაცია</h3>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <p>არ გაქვთ ანგარიში? <a href="/register"  style="color: red;">დარეგისტრირდით</a></p>
+                    <button type="submit" class="btn btn-success">ავტორიზაცია</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}მთავარი გვერდი{% endblock %}
+
+{% block content %}
+<div class="container"><h1>სტატისტიკა</h1></div>
+<hr>
+<div class="row">
+	<div class="col">
+		<h3>დეკოლაინი</h3>
+		<h5>კომპანიას აქვს</h5>
+		<h5>{{ deco_aio|length }} All In One</h5>
+		<h5>{{ deco_case|length }} სისტემური ბლოკი</h5>
+		<h5>{{ deco_monitor|length }} მონიტორი</h5>
+		<h5>{{ deco_laptops|length }} ლეპტოპი</h5>
+		<h5>{{ deco_printer|length }} პრინტერი</h5>
+		
+	</div>
+	<div class="col">
+		<h3>არქარეა</h3>
+		<h5>კომპანიას აქვს<h5>
+		<h5>{{ arch_aio|length }} All In One</h5>
+		<h5>{{ arch_case|length }} სისტემური ბლოკი<h5>
+		<h5> {{ arch_monitor|length }} მონიტორი</h5>
+		<h5>{{ arch_laptops|length }} ლეპტოპი</h5>
+		<h5>{{ arch_printer|length }} პრინტერი</h5>
+		
+	</div>
+</div>
+
+
+
+
+
+{% endblock %}

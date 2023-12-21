@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ wh.name }} - ინვენტარი{% endblock %}
+
+{% block content %}
+<div>
+    <table class="table table-light table-striped desktop-only" xmlns="http://www.w3.org/1999/html">
+        <thead class="table-dark">
+        <tr>
+            <th>ნომერი</th>
+            <th>ტიპი</th>
+            <th>მფლობელი</th>
+            <th>აღწერა</th>
+            <th>ლოკაცია</th>
+        </tr>
+        </thead>
+        {% for item in wh.item_set.all %}
+
+        <tr>
+
+                <td><a class="table-item" href="/{{ item.item_number }}">{{ item.item_number }}</a></td>
+                <td><a class="table-item" href="/{{ item.item_number }}">{{ item.type }}</a></td>
+                <td><a class="table-item" href="/{{ item.item_number }}">{{ item.owner }}</a></td>
+                <td><a class="table-item" href="/{{ item.item_number }}">{{ item.description }}</a></td>
+                <td><a class="table-item" href="/{{ item.item_number }}">{{ item.location }}</a></td>
+            </a>
+        </tr>
+
+        {% endfor %}
+    </table>
+        <table class="table table-light table-striped mobile-only" xmlns="http://www.w3.org/1999/html">
+        {% for item in wh.item_set.all %}
+                <tr>
+                    <th>ნომერი</th>
+                    <td><h4><a class="table-item" style="color: red;" href="/{{ item.item_number }}">{{ item.item_number }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>ტიპი</th>
+                    <td><h4><a class="table-item" href="/{{ item.item_number }}">{{ item.type }}</a></h3></t4>
+                </tr>
+                <tr>
+                    <th>კომპანია</th>
+                    <td><h4><a class="table-item" href="/{{ item.item_number }}">{{ item.company }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>აღწერა</th>
+                    <td><h4><a class="table-item" href="/{{ item.item_number }}">{{ item.description }}</a></h3></td>
+                </tr>
+                <tr>
+                    <th>ლოკაცია</th>
+                    <td><h4><a class="table-item" href="/{{ item.item_number }}">{{ item.location }}</a></h3></td>
+                </tr>
+
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

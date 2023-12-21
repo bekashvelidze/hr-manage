@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+
+{% block title %}ჩემი სესხები{% endblock %}
+
+{% block content %}
+
+
+<div style="overflow-x:auto;">
+    <table class="table table-light table-striped desktop-only" xmlns="http://www.w3.org/1999/html">
+        <thead class="table-dark">
+        <tr>
+            <th>N</th>
+            <th>დასახელება</th>
+            <th>ძირი თანხა</th>
+            <th>საპროცენტო განაკვეთი</th>
+            <th>ვადა (თვეები)</th>
+            <th>პროცენტი სულ</th>
+            <th>ყოველთვიური სახდელი</th>
+            <th>სიცოცხლის დაზღვევა</th>
+            <th>შენატანების დაზღვევა</th>
+            <!--{% load get_group %}-->
+            <!--{% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}-->
+            <!--<th style="text-align:center">მოქმედება</th>-->
+            <!--{% endif %}-->
+        </tr>
+        </thead>
+        {% for item in loans %}
+
+        <tr>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.id }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.name }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.amount }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.percent }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.months }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.percent_to_pay }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.monthly_payment }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.life_insurance }}</a></td>
+            <td><a class="table-item" href="/loan/{{ item.id }}">{{ item.payments_insurance }}</a></td>
+            <!--{% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}-->
+            <!--<td style="text-align:center">-->
+            <!--    <a class="table-item" href="/process/{{ item.id }}"><button class="btn btn-success btn-sm">მიღება</button></a>-->
+            <!--    <a class="table-item" href="/complete/{{ item.id }}"><button class="btn btn-success btn-sm">დასრულება</button></a>-->
+
+            <!--</td>-->
+            <!--{% endif %}-->
+        </tr>
+
+        {% endfor %}
+    </table>
+
+<!-- Mobile View -->
+
+    <table class="table table-light table-striped mobile-only" xmlns="http://www.w3.org/1999/html">
+        {% for item in loans %}
+        <tr>
+            <th>N</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.id }}</a>
+            </h4></td>
+        </tr>
+        <tr>
+            <th>დასახელება</th>
+            <td><h4><a class="table-item" style="color: red;" href="/loan/{{ item.id }}">{{ item.name }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>საპროცენტო განაკვეთი</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.amount }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>ვადა (თვეები)</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.percent }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>პროცენტი სულ</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.percent_to_pay }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>ყოველთვიური სახდელი</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.monthly_payment }}</a>
+            </h4></td>
+        </tr>
+        <tr>
+            <th>სიცოცხლის დაზღვევა</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.life_insurance }}</a></h4></td>
+        </tr>
+                <tr>
+            <th>შენატანების დაზღვევა</th>
+            <td><h4><a class="table-item" href="/loan/{{ item.id }}">{{ item.payments_insurance }}</a></h4></td>
+        </tr>
+        <!--{% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}-->
+        <!--<tr>-->
+        <!--    <th>მოქმედება</th>-->
+        <!--    <td>-->
+        <!--        <a class="table-item" style="color: red;" href="/process/{{ item.id }}"><button class="btn btn-success btn-sm">მიღება</button></a>-->
+        <!--        <a class="table-item" style="color: red;" href="/complete/{{ item.id }}"><button class="btn btn-success btn-sm">დასრულება</button></a>-->
+        <!--    </td>-->
+        <!--</tr>-->
+        <!--{% endif %}-->
+
+
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

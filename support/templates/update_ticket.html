@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ ticket.user }} - განახლება{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content" style="padding: 1.5em">
+        <!--<div class="col col-lg">-->
+            <table class="table table-light">
+                <tr>
+                    <th>N</th>
+                    <td><h4>{{ ticket.id }}</h4></td>
+                </tr>
+                <tr>
+                    <th>მომხმარებელი</th>
+                    <td style="color:red;"><h4>{{ ticket.user }}</h4></td>
+                </tr>
+                <tr>
+                    <th>ტელეფონი</th>
+                    <td><h4>{{ ticket.phone }}</h4></td>
+                </tr>
+                <tr>
+                    <th>კატეგორია</th>
+                    <td><h4>{{ ticket.category }}</h4></td>
+                </tr>
+                <tr>
+                    <th>პრიორიტეტი</th>
+                    <td><h4>{{ ticket.priority }}</h4></td>
+                </tr>
+                <tr>
+                    <th>აღწერა</th>
+                    <td><h4>{{ ticket.description }}</h4></td>
+                </tr>
+                <tr>
+                    <th>შექმნის თარიღი</th>
+                    <td><h4>{{ ticket.date|date:'d.m.Y' }} - {{ ticket.time|time:'H:i' }}</h4></td>
+                </tr>
+                <tr>
+                    <th>სტატუსი</th>
+                    <td style="color:red;"><h4>{{ form.status }}</h4></td>
+                </tr>
+            </table>
+        <!--</div>-->
+    </div>
+</div>
+<div class="col col-md-2">
+<button class="btn btn-lg btn-warning" onclick="javascript:window.history.back();">უკან დაბრუნება</button>
+</div>
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ user.get_full_name }} {% load crispy_forms_tags %} {% endblock %}
+{% block content %}
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item active" aria-current="page">მომხმარებლის პროფილი</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="{{ user.profile.image.url }}" alt="avatar"
+              class="img-fluid" style="width: 200px;">
+            <h5 class="my-3"><b>{{ user.get_full_name }}</b></h5>
+            <p class="text-muted mb-1">Full Stack Developer</p>
+            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <div class="d-flex justify-content-center mb-2">
+                <a class="btn btn-md btn-outline-success ms-1" href="/addloan" role="button">დამატება</a>
+                <a class="btn btn-md btn-outline-success ms-1" href="/pay" role="button">გადახდა</a>
+                <a class="btn btn-md btn-outline-success ms-1" href="/myloans" role="button">ჩემი სესხები</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">სახელი, გვარი</p>
+              </div>
+              <div class="col-sm-8">
+                <p class="text-muted mb-0">{{ user.get_full_name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">ელ-ფოსტა</p>
+              </div>
+              <div class="col-sm-8">
+                <p class="text-muted mb-0">{{ user.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">ტელეფონი</p>
+              </div>
+              <div class="col-sm-8">
+                <p class="text-muted mb-0">2021</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">მობილური</p>
+              </div>
+              <div class="col-sm-8">
+                <p class="text-muted mb-0">598 08 00 90</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">დეპარტამენტი</p>
+              </div>
+              <div class="col-sm-8">
+                <p class="text-muted mb-0">{{ user.group }}</p>
+              </div>
+            </div>
+            {% if user.is_staff %}
+            <hr>
+            <div class="row">
+              <div class="col-sm-4">
+                <p class="mb-0">საიტის მართვა</p>
+              </div>
+              <div class="col-sm-8">
+                <a class="btn btn-md btn-outline-success ms-1" href="/admin/" target="_blank" role="button">ადმინ პანელი</a>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+          <div class="col-md-12 desktop-only">
+            <div class="card mb-4 mb-md-0">
+              <table class="table align-middle mb-0 bg-white table-striped table-hover">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>N</th>
+                              <th>სტატუსი</th>
+                              <th>პრიორიტეტი</th>
+                              <th>კატეგორია</th>
+                              <th>თარიღი</th>
+                              <th>დრო</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for item in tickets %}
+                            <tr>
+                              <td>
+                                <a class="table-item" href="/ticket/{{ item.id }}">{{ item.id }}</a>
+                              </td>
+                              <td>
+                                  {% if item.status == "განუხილავი" %}
+                                      <a class="table-item" style="color: red;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+                                  {% elif item.status == "მიღებული" %}
+                                      <a class="table-item" style="color: orange;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+                                  {% elif item.status == "შესრულებული" %}
+                                      <a class="table-item" style="color: green;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+                                  {% endif %}
+                              </td>
+                              <td>
+                                <a class="table-item" href="/ticket/{{ item.id }}">{{ item.priority }}</a>
+                              </td>
+                              <td>
+                                <a class="table-item" href="/ticket/{{ item.id }}">{{ item.category }}</a>
+                              </td>
+                              <td>
+                                <a class="table-item" href="/ticket/{{ item.id }}">{{ item.date|date:'d.m.Y' }}</a>
+                              </td>
+                              <td>
+                                <a class="table-item" href="/ticket/{{ item.id }}">{{ item.time|time:'H:i' }}</a>
+                              </td>
+                            </tr>
+                            {% endfor %}
+
+                          </tbody>
+                        </table>
+            </div>
+          </div>
+    </div>
+
+  </div>
+</section>
+ <!--Mobile View-->
+
+    <table class="table align-middle mb-0 table-striped table-hover mobile-only" xmlns="http://www.w3.org/1999/html">
+        {% for item in tickets %}
+        <tr>
+            <th>N</th>
+            <td><h4><a class="table-item" style="color: red;" href="/ticket/{{ item.id }}">{{ item.id }}</a>
+            </h4></td>
+        </tr>
+        <tr>
+            <th>სტატუსი</th>
+            {% if item.status == "განუხილავი" %}
+                <td><h4><a class="table-item" style="color: red;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+            {% elif item.status == "მიღებული" %}
+                <td><h4><a class="table-item" style="color: orange;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+            {% elif item.status == "შესრულებული" %}
+                <td><h4><a class="table-item" style="color: green;" href="/ticket/{{ item.id }}">{{ item.status }}</a>
+            {% endif %}
+            </h4></td>
+        </tr>
+        <tr>
+            <th>პრიორიტეტი</th>
+            <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.priority }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>კატეგორია</th>
+            <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.category }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>თარიღი</th>
+            <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.date|date:'d.m.Y' }}</a></h4></td>
+        </tr>
+        <tr>
+            <th>დრო</th>
+            <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.time|time:'H:i' }}</a></h4></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

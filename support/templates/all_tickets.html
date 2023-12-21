@@ -1,0 +1,117 @@
+{% extends 'main/base.html' %}
+
+{% block title %}დახმარების ბარათები{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-12 desktop-only">
+        <div style="overflow-x:auto;">
+            <table class="table table-light table-striped desktop-only" xmlns="http://www.w3.org/1999/html">
+                <thead class="table-dark">
+                <tr>
+                    <th>N</th>
+                    <th>სტატუსი</th>
+                    <th>პრიორიტეტი</th>
+                    <th>კატეგორია</th>
+                    <th>მომხმარებელი</th>
+                    <th>აღწერა</th>
+                    <th> თარიღი</th>
+                    <th>დრო</th>
+                    {% load get_group %}
+                    {% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}
+                    <th style="text-align:center">მოქმედება</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                {% for item in dp %}
+
+                <tr>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.id }}</a></td>
+                    {% if item.status == "განუხილავი" %}
+                    <td><a class="table-item" href="/ticket/{{ item.id }}" style="color:red;">{{ item.status }}</a></td>
+                    {% elif item.status == "მიღებული" %}
+                    <td><a class="table-item" href="/ticket/{{ item.id }}" style="color:orange;">{{ item.status }}</a></td>
+                    {% elif item.status == "შესრულებული" %}
+                    <td><a class="table-item" href="/ticket/{{ item.id }}" style="color:green;">{{ item.status }}</a></td>
+                    {% endif %}
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.priority }}</a></td>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.category }}</a></td>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.user }}</a></td>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.description }}</a></td>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.date|date:'d.m.Y' }}</a></td>
+                    <td><a class="table-item" href="/ticket/{{ item.id }}">{{ item.time|time:'H:i' }}</a></td>
+                    {% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}
+                    <td style="text-align:center">
+                        <a class="table-item" href="/process/{{ item.id }}"><button class="btn btn-success btn-sm">მიღება</button></a>
+                        <a class="table-item" href="/complete/{{ item.id }}"><button class="btn btn-success btn-sm">დასრულება</button></a>
+
+                    </td>
+                    {% endif %}
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+        <!-- Mobile View -->
+
+            <table class="table table-light table-striped mobile-only" xmlns="http://www.w3.org/1999/html">
+                {% for item in dp %}
+                <tr>
+                    <th>N</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.id }}</a>
+                    </h4></td>
+                </tr>
+                <tr>
+                    <th>სტატუსი</th>
+                    {% if item.status == "განუხილავი" %}
+                    <td><h4><a class="table-item" style="color: red;" href="/ticket/{{ item.id }}">{{ item.status }}</a></h4></td>
+                    {% elif item.status == "მიღებული" %}
+                    <td><h4><a class="table-item" style="color: orange;" href="/ticket/{{ item.id }}">{{ item.status }}</a></h4></td>
+                    {% elif item.status == "შესრულებული" %}
+                    <td><h4><a class="table-item" style="color: green;" href="/ticket/{{ item.id }}">{{ item.status }}</a></h4></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>პრიორიტეტი</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.priority }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>კატეგორია</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.category }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>მომხმარებელი</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.user }}</a>
+                    </h4></td>
+                </tr>
+                <tr>
+                    <th>აღწერა</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.description }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>თარიღი</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.date|date:'d.m.Y' }}</a></h4></td>
+                </tr>
+                <tr>
+                    <th>დრო</th>
+                    <td><h4><a class="table-item" href="/ticket/{{ item.id }}">{{ item.time|time:'H:i' }}</a></h4></td>
+                </tr>
+                {% if user.is_authenticated and not request.user|has_group:"მომხმარებლები"%}
+                <tr>
+                    <th>მოქმედება</th>
+                    <td>
+                        <a class="table-item" style="color: red;" href="/process/{{ item.id }}"><button class="btn btn-success btn-sm">მიღება</button></a>
+                        <a class="table-item" style="color: red;" href="/complete/{{ item.id }}"><button class="btn btn-success btn-sm">დასრულება</button></a>
+                    </td>
+                </tr>
+                {% endif %}
+
+
+                {% endfor %}
+            </table>
+{% endblock %}

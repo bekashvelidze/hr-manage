@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}ახალი გადახდის დამატება{% endblock %}
+
+{% block content %}
+<!--{% csrf_token %}-->
+<!--{{ payform }}-->
+<!--<button type="submit" class="btn btn-success" name="newPayment">გადახდის დამატება</button>-->
+
+
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6">
+                <h3 style="text-align: center;">ახალი გადახდის დამატება</h3>
+                <form enctype="multipart/form-data" method="post" action="/pay">
+                    {% csrf_token %}
+                    <div class="form-control" style="text-align: center;">
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">დასახელება</span>
+                                {{ payform.name }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">გადახდილი თანხა</span>
+                                {{ payform.amount }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">ძირი თანხა</span>
+                                {{ payform.initial }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">გადახდის თარიღი</span>
+                                {{ payform.payment_date }}
+                            </div>
+                            <p>{{ payform.errors }}</p>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="newPayment">გადახდის დამატება</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

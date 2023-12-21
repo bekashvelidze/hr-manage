@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+
+{% block title %}რეგისტრაცია{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--<div class="col col-4">-->
+<!--    <h1>რეგისტრაცია</h1>-->
+<!--    <form method="POST" class="form-group">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <button type="submit" class="btn btn-success">რეგისტრაცია</button>-->
+<!--    </form>-->
+<!--</div>-->
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6">
+                <h3 style="text-align: center;">რეგისტრაცია</h3>
+                    {% if form.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ form.errors }}
+                        <buttom type="button" class="btn-close" data-bs-dismiss="alert" aria=label="დახურვა"></buttom>
+                    </div>
+                    {% else %}
+                    <p>{{ message }}</p>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-control" style="text-align: center;">
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">მომხმარებლის სახელი</span>
+                                    {{ form.username }}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">ელ-ფოსტა</span>
+                                    {{ form.email }}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">სახელი</span>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">გვარი</span>
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">პაროლი</span>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">პაროლის დადასტურება</span>
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success" name="newTicket">რეგისტრაცია</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

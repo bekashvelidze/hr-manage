@@ -1,0 +1,76 @@
+@import url("//cdn.web-fonts.ge/fonts/bpg-nino-mtavruli/css/bpg-nino-mtavruli.min.css");
+
+.main {
+    float: left;
+    width: 99%;
+    padding: 40px 10px 10px 10px;
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    font-size: 20mv;
+}
+a {
+    color: black;
+}
+h1 {
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    padding: 10px;
+}
+.table-item:link {
+    color: black;
+    text-decoration: none;
+}
+.table-item:hover {
+    color: orangered;
+}
+table {
+    font-size: 20mv;
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    color: #fff;
+}
+.logo {
+    color: orangered;
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    font-size: 44mv;
+    padding: 10px;
+}
+.deco {
+    color: orangered;
+}
+.arch {
+    color: green;
+}
+.navbar-brand {
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    color: white;
+}
+.nav-link {
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    color: white;
+}
+.dropdown-menu {
+    font-family: "BPG Nino Mtavruli", sans-serif;
+    color: white;
+}
+.center {
+    margin: auto;
+    display: flex;
+    padding: 10px;
+    position: relative;
+    justify-content: center;
+}
+.inner {
+    position: absolute;
+}
+
+.mobile-only {
+    display:none
+}
+.desktop-only {
+    display:table
+}
+@media (max-width:600px){
+.desktop-only {
+    display:none
+}
+.mobile-only {
+    display:block;
+}

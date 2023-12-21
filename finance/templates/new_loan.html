@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+
+{% block title %}ახალი სესხის დამატება{% endblock %}
+
+{% block content %}
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6">
+                <h3 style="text-align: center;">ახალი სესხის დამატება</h3>
+                <form enctype="multipart/form-data" method="post" action="/addloan">
+                    {% csrf_token %}
+                    <div class="form-control" style="text-align: center;">
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">დასახელება</span>
+                                {{ form.name }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">საწყისი თანხა</span>
+                                {{ form.amount }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">საპროცენტო განაკვეთი</span>
+                                {{ form.percent }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">სესხის ვადა (თვეები)</span>
+                                {{ form.months }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">გადასახდელი პროცენტი სულ</span>
+                                {{ form.percent_to_pay }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">ყოველთვიური სახდელი</span>
+                                {{ form.monthly_payment }}
+                            </div><div class="input-group mb-2">
+                                <span class="input-group-text">სიცოცხლის დაზღვევა</span>
+                                {{ form.life_insurance }}
+                            </div>
+                            </div><div class="input-group mb-2">
+                                <span class="input-group-text">საკრედიტო შენატანების დაზღვევა</span>
+                                {{ form.payments_insurance }}
+                            </div>
+                            <p>{{ form.errors }}</p>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="newTicket">დამატება</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

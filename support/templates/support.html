@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}მხარდაჭერის ბარათის დამატება{% endblock %}
+
+
+{% block content %}
+<div class="center">
+    <div class="container" style="padding-top:2em">
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6">
+                <h3 style="text-align: center;">მხარდაჭერის ბარათის დამატება</h3>
+                <form enctype="multipart/form-data" method="post" action="/support">
+                    {% csrf_token %}
+                    <div class="form-control" style="text-align: center;">
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">კატეგორია</span>
+                                {{ form.category }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">ტელეფონი</span>
+                                {{ form.phone }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">აღწერა</span>
+                                {{ form.description }}
+                            </div>
+                            <p>{{ form.errors }}</p>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="newTicket">დამატება</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
