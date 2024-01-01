@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'decoline.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hrmanage.settings')
 
 application = get_wsgi_application()

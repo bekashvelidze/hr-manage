@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 class Loan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,7 +17,7 @@ class Loan(models.Model):
 
     def __str__(self):
         return self.name
-        # return f"{self.user} - {self.id} - {self.name} - {self.amount} - {self.percent} - {self.months} - {self.monthly_payment}"
+
 
 class PaymentHistory(models.Model):
     loan = models.ForeignKey(Loan, on_delete=models.CASCADE)
@@ -29,6 +28,6 @@ class PaymentHistory(models.Model):
     payments_insurance = models.CharField(max_length=100)
     paid_date = models.DateField()
 
-    def __str__(self):
-        return f"{self.loan} - {self.paid_amount} - {self.initial_paid} - {self.percent_paid} - {self.paid_date}"
+   # def __str__(self):
+    #   return f"{self.loan} - {self.paid_amount} - {self.initial_paid} - {self.percent_paid} - {self.paid_date}"
 

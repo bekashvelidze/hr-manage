@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g2-j30jevx^6*+_3rqj7f@oth1giv1-lb%a3=_lm_1za=$5hfn'
+SECRET_KEY = '&7hjnjkef_jkhdw*&)(*_j30jevx^6*+_3rqj7f@oth1giv1-lb%a3=_lm_1za=$5hfn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["hrmanage.ge","www.hrmanage.ge",]
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'register.apps.RegisterConfig',
     'support.apps.SupportConfig',
     'finance.apps.FinanceConfig',
+    'schedule.apps.ScheduleConfig',
     'django_filters'
 ]
 
@@ -57,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'decoline.urls'
+ROOT_URLCONF = 'hrmanage.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'decoline.wsgi.application'
+WSGI_APPLICATION = 'hrmanage.wsgi.application'
 
 
 # Database
@@ -127,9 +128,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = 'static/'
-MEDIA_ROOT = 'media/'
 
+MEDIA_ROOT = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

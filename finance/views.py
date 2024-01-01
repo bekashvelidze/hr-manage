@@ -38,7 +38,7 @@ def addloan(response):
 @login_required(login_url='/login/')
 def pay(response):
     if response.method == "POST":
-        loans = Loan.objects
+        loans = Loan.objects.filter(user=response.user)
         payform = AddPayment(response.POST)
         if payform.is_valid():
             amount_paid = payform["amount"].value()
